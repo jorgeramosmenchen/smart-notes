@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Notes + Tasks</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Smart Notes + Tasks</h1>
+  </header>
+
+  <main class="grid">
+    <section class="panel" id="tasks-panel">
+      <h2>Tareas</h2>
+
+      <form id="task-form" class="row">
+        <input id="task-input" type="text" placeholder="Añadir tarea..." />
+        <button type="submit">Añadir</button>
+      </form>
+
+      <ul id="task-list" class="list"></ul>
+    </section>
+
+    <section class="panel" id="notes-panel">
+      <h2>Notas</h2>
+
+      <form id="note-form" class="col">
+        <textarea id="note-input" rows="4" placeholder="Escribe una nota..."></textarea>
+        <button type="submit">Guardar nota</button>
+      </form>
+
+      <div id="notes-container" class="notes"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>v1 • HTML/CSS/JS • Guardado local (próximamente)</small>
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
