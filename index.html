@@ -16,9 +16,10 @@
       <h2>Tareas</h2>
 
       <form id="task-form" class="row">
-        <input id="task-input" type="text" placeholder="Añadir tarea..." />
-        <button type="submit">Añadir</button>
-      </form>
+  <label for="task-input" class="sr-only">Nueva tarea</label>
+  <input id="task-input" type="text" placeholder="Añadir tarea..." aria-label="Nueva tarea" />
+  <button type="submit">Añadir</button>
+        </form>
 
       <ul id="task-list" class="list"></ul>
     </section>
@@ -27,7 +28,8 @@
       <h2>Notas</h2>
 
       <form id="note-form" class="col">
-        <textarea id="note-input" rows="4" placeholder="Escribe una nota..."></textarea>
+         <label for="note-input" class="sr-only">Nueva nota</label>
+         <textarea id="note-input" rows="4" placeholder="Escribe una nota..." aria-label="Nueva nota"></textarea>
         <button type="submit">Guardar nota</button>
       </form>
 

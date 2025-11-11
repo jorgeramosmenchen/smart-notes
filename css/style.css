@@ -49,3 +49,26 @@ button{
   background:#0b1220; border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-top:8px;
 }
 .muted{ color:var(--muted); }
+/* Accesibilidad: clase oculta visible solo para lectores de pantalla */
+.sr-only{
+  position:absolute!important;
+  width:1px;height:1px;
+  padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+
+/* Foco visible (al usar Tab) */
+a, button, input, textarea { outline: none; }
+a:focus, button:focus, input:focus, textarea:focus {
+  box-shadow: 0 0 0 3px #15803d55, 0 0 0 1px #22c55e inset;
+}
+
+/* Responsive extra */
+@media (max-width: 380px){
+  .row { flex-direction: column; }
+  button { width: 100%; }
+}
+
+/* Polish visual */
+button:hover { filter: brightness(1.08); }
+button:active { transform: translateY(1px); }
