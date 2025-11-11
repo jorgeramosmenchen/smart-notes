@@ -53,18 +53,48 @@ taskList.addEventListener('click', (e) => {
   }
 });
 
-// === NOTAS (demo, sin guardado todavía) ===
+// === NOTAS ===
+let notas = JSON.parse(localStorage.getItem('notas')) || [];
+
+function guardarNotas() {
+  localStorage.setItem('notas', JSON.stringify(notas));
+}
+
+function renderizarNotas() {
+  notesBox.innerHTML = "";
+  notas.forEach((nota, index) => {
+    const div = document.createElement('div');
+    div.className = "note";
+    div.innerHTML = `
+      <div>${nota}</div>
+      <div class="muted">guardada</div>
+      <button class="delete-note" data-index="${index}">✖</button>
+    `;
+    notesBox.prepend(div);
+  });
+}
+
 noteForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const texto = noteInput.value.trim();
   if(!texto) return;
-  const div = document.createElement('div');
-  div.className = "note";
-  div.innerHTML = `<div>${texto}</div><div class="muted">guardada (demo)</div>`;
-  notesBox.prepend(div);
+  notas.unshift(texto);
+  guardarNotas();
+  renderizarNotas();
   noteInput.value = "";
 });
 
-// === CARGAR AL INICIAR ===
+notesBox.addEventListener('click', (e) => {
+  if(e.target.classList.contains('delete-note')){
+    const index = e.target.dataset.index;
+    notas.splice(index, 1);
+    guardarNotas();
+    renderizarNotas();
+  }
+});
+
+// === CARGAR TODO AL INICIAR ===
 renderizarTareas();
+renderizarNotas();
+
 
