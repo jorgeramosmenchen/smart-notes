@@ -19,6 +19,16 @@ function guardarTareas() {
   localStorage.setItem('tareas', JSON.stringify(tareas));
 }
 
+// Mostrar notificación visual
+function mostrarMensaje(texto, tipo = "ok") {
+  const msg = document.createElement('div');
+  msg.className = `msg ${tipo}`;
+  msg.textContent = texto;
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 2000);
+}
+
+
 // Renderizar tareas en pantalla
 function renderizarTareas() {
   taskList.innerHTML = "";
@@ -40,6 +50,7 @@ taskForm.addEventListener('submit', (e) => {
   tareas.unshift(texto); // Añadir al principio
   guardarTareas();
   renderizarTareas();
+  mostrarMensaje("Tarea guardada ✅");
   taskInput.value = "";
 });
 
@@ -50,6 +61,7 @@ taskList.addEventListener('click', (e) => {
     tareas.splice(index, 1);
     guardarTareas();
     renderizarTareas();
+    mostrarMensaje("Tarea eliminada ❌", "error");
   }
 });
 
@@ -59,6 +71,16 @@ let notas = JSON.parse(localStorage.getItem('notas')) || [];
 function guardarNotas() {
   localStorage.setItem('notas', JSON.stringify(notas));
 }
+
+// Mostrar notificación visual
+function mostrarMensaje(texto, tipo = "ok") {
+  const msg = document.createElement('div');
+  msg.className = `msg ${tipo}`;
+  msg.textContent = texto;
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 2000);
+}
+
 
 function renderizarNotas() {
   notesBox.innerHTML = "";
@@ -81,6 +103,7 @@ noteForm.addEventListener('submit', (e) => {
   notas.unshift(texto);
   guardarNotas();
   renderizarNotas();
+  mostrarMensaje("Nota guardada 📝");
   noteInput.value = "";
 });
 
@@ -90,6 +113,7 @@ notesBox.addEventListener('click', (e) => {
     notas.splice(index, 1);
     guardarNotas();
     renderizarNotas();
+    mostrarMensaje("Nota eliminada 🗑️", "error");
   }
 });
 

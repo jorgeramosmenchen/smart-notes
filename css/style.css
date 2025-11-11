@@ -102,3 +102,29 @@ button {
   border: 1px solid #1f2937;
   box-shadow: 0 0 12px #00000055;
 }
+/* Notificaciones visuales */
+.msg {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #16a34a;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px #0005;
+  animation: fadeIn 0.3s ease, fadeOut 0.5s ease 1.5s forwards;
+}
+
+.msg.error {
+  background: #dc2626;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateY(10px); }
+}
