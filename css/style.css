@@ -10,7 +10,7 @@
 *{ box-sizing:border-box; }
 body{
   margin:0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu;
-  background:var(--bg); color:var(--text); line-height: 1.6;
+  background:var(--bg); color:var(--text); line-height: 1.6; transition: background-color 0.3s, color 0.3s; 
 }
 .app-header, .app-footer{
   padding:16px 20px; border-bottom:1px solid var(--border);
@@ -128,3 +128,35 @@ button {
 @keyframes fadeOut {
   to { opacity: 0; transform: translateY(10px); }
 }
+
+/* === MODO OSCURO AUTOMÁTICO === */
+
+/* Tema claro por defecto */
+body {
+  background-color: #f9f9f9;
+  color: #222;
+  transition: background-color 0.3s, color 0.3s;
+}
+/*Las media queries en CSS son condiciones que permiten aplicar estilos solo cuando se cumple algo.*/
+/* Cuando el sistema está en modo oscuro */
+/*mira el tema del usuario*/
+@media (prefers-color-scheme: dark) { 
+  body {
+    background-color: #121212;
+    color: #eee;
+    transition: backgorund-color 0.3s; color: 0.3s;
+  }
+
+  .note, li {
+    background-color: #1e1e1e;
+    color: #eee;
+    border-color: #333;
+  }
+
+  .delete, .delete-note {
+    background-color: #333;
+    color: #eee;
+  }
+}
+
+
