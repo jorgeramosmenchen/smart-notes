@@ -1,60 +1,153 @@
-:root{
-  --bg:#0f172a;
-  --panel:#111827;
-  --text:#e5e7eb;
-  --muted:#9ca3af;
-  --accent:#22c55e;
-  --border:#1f2937;
+/* === PALETA DE COLORES POR VARIABLES === */
+/* Tema claro por defecto */
+:root {
+  --bg: #f9f9f9;
+  --text: #222;
+  --muted: #6b7280;
+
+  --panel: #ffffff;
+  --card: #ffffff;
+  --border: #e5e7eb;
+
+  --accent: #22c55e;
 }
 
-*{ box-sizing:border-box; }
-body{
-  margin:0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu;
-  background:var(--bg); color:var(--text); line-height: 1.6; transition: background-color 0.3s, color 0.3s; 
-}
-.app-header, .app-footer{
-  padding:16px 20px; border-bottom:1px solid var(--border);
-}
-.app-footer{ border-top:1px solid var(--border); border-bottom:none; text-align:center; color:var(--muted); }
+/* Tema oscuro manual (cuando body tiene .dark-theme) */
+.dark-theme {
+  --bg: #121212;
+  --text: #eee;
+  --muted: #9ca3af;
 
-.grid{
-  display:grid; gap:16px; padding:20px; 
-  grid-template-columns: 1fr; 
-}
-@media (min-width: 900px){
-  .grid{ grid-template-columns: 1fr 1fr; }
+  --panel: #111827;
+  --card: #0b1220;
+  --border: #1f2937;
+
+  --accent: #22c55e;
 }
 
-.panel{
-  background:var(--panel); border:1px solid var(--border);
-  border-radius:14px; padding:16px;
+/* === MODO OSCURO AUTOMÁTICO (según el sistema) === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #eee;
+    --muted: #9ca3af;
+
+    --panel: #111827;
+    --card: #0b1220;
+    --border: #1f2937;
+
+    --accent: #22c55e;
+  }
 }
-h1,h2{ margin:0 0 12px; }
-.row{ display:flex; gap:8px; }
-.col{ display:flex; flex-direction:column; gap:8px; }
-input, textarea{
-  width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border);
-  background:#0b1220; color:var(--text);
+
+/* === ESTILOS BASE === */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
 }
-button{
-  padding:10px 14px; border:0; border-radius:10px; cursor:pointer; font-weight:600;
-  background:var(--accent); color:#052e16;
+
+.app-header,
+.app-footer {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
 }
-.list{ list-style:none; padding:0; margin:12px 0 0; display:flex; flex-direction:column; gap:8px; }
-.list li{
-  display:flex; align-items:center; justify-content:space-between;
-  background:#0b1220; border:1px solid var(--border); border-radius:10px; padding:10px 12px;
+.app-footer {
+  border-top: 1px solid var(--border);
+  border-bottom: none;
+  text-align: center;
+  color: var(--muted);
 }
-.note{
-  background:#0b1220; border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-top:8px;
+
+.grid {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  grid-template-columns: 1fr;
 }
-.muted{ color:var(--muted); }
+@media (min-width: 900px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 0 12px #00000055;
+}
+
+h1, h2 { margin: 0 0 12px; }
+h1 {
+  font-size: 1.8rem;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #a3e635;
+}
+
+.row { display: flex; gap: 8px; }
+.col { display: flex; flex-direction: column; gap: 8px; }
+
+input, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+button {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  background: var(--accent);
+  color: #052e16;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+button:hover { filter: brightness(1.08); }
+button:active { transform: translateY(1px); }
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.list li,
+.note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: var(--text);
+}
+.muted { color: var(--muted); }
+
 /* Accesibilidad: clase oculta visible solo para lectores de pantalla */
-.sr-only{
-  position:absolute!important;
-  width:1px;height:1px;
-  padding:0;margin:-1px;overflow:hidden;
-  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
 
 /* Foco visible (al usar Tab) */
@@ -64,44 +157,11 @@ a:focus, button:focus, input:focus, textarea:focus {
 }
 
 /* Responsive extra */
-@media (max-width: 380px){
+@media (max-width: 380px) {
   .row { flex-direction: column; }
   button { width: 100%; }
 }
 
-/* Polish visual */
-button:hover { filter: brightness(1.08); }
-button:active { transform: translateY(1px); }
-
-h1 {
-  font-size: 1.8rem;
-  letter-spacing: -0.5px;
-  color: var(--accent);
-}
-
-h2 {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-  color: #a3e635;
-}
-
-.panel {
-  padding: 20px;
-}
-
-input, textarea {
-  font-size: 0.95rem;
-}
-
-button {
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-}
-.panel {
-  background: #111827;
-  border: 1px solid #1f2937;
-  box-shadow: 0 0 12px #00000055;
-}
 /* Notificaciones visuales */
 .msg {
   position: fixed;
@@ -115,48 +175,28 @@ button {
   box-shadow: 0 2px 8px #0005;
   animation: fadeIn 0.3s ease, fadeOut 0.5s ease 1.5s forwards;
 }
-
-.msg.error {
-  background: #dc2626;
-}
+.msg.error { background: #dc2626; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeOut {
   to { opacity: 0; transform: translateY(10px); }
 }
 
-/* === MODO OSCURO AUTOMÁTICO === */
-
-/* Tema claro por defecto */
-body {
-  background-color: #f9f9f9;
-  color: #222;
-  transition: background-color 0.3s, color 0.3s;
+/* === BOTÓN DE CAMBIO DE TEMA === */
+.theme-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-/*Las media queries en CSS son condiciones que permiten aplicar estilos solo cuando se cumple algo.*/
-/* Cuando el sistema está en modo oscuro */
-/*mira el tema del usuario*/
-@media (prefers-color-scheme: dark) { 
-  body {
-    background-color: #121212;
-    color: #eee;
-    transition: backgorund-color 0.3s; color: 0.3s;
-  }
-
-  .note, li {
-    background-color: #1e1e1e;
-    color: #eee;
-    border-color: #333;
-  }
-
-  .delete, .delete-note {
-    background-color: #333;
-    color: #eee;
-  }
-}
-
-
+.theme-btn:hover { opacity: 0.8; }
